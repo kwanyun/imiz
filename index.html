@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Add this line -->
+    <title>이미즈 - the image quiz</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1><a>이미즈</a><span class="small-word"> - 의미를 찾는 퀴즈</span></h1>
+        <p>이미지를 "그나마" 잘 설명하는 텍스트를 고르세요.
+            <br>이미지가 가진 의미와 텍스트가 가진 의미를 생각해 보세요.
+        </p>
+        <p id="result"></p><br>
+        <img id="quiz-image" src="" alt="Image"><br>
+        <div>
+            <input type="radio" id="option1" name="answer" value="correct">
+            <label for="option1">Text Option 1</label>
+        </div>
+        <br>
+        <div>
+            <input type="radio" id="option2" name="answer" value="incorrect">
+            <label for="option2">Text Option 2</label>
+        </div>
+        <button onclick="checkAnswer()">정답 입력</button>
+        <br>
+    </div>
+    <div class="contact-footer">
+        <p>연락처: addkllwoe11@gmail.com</p>
+    </div>
+    <div class="footer">
+        <p><strong>이미즈는</strong><br><br>이미지와 텍스트 의미를 이해하여 이미지를 텍스트로 설명하는<br> 문제를 푸는 퀴즈입니다.</strong></p>
+        <br>
+        <p>이러한 문제를 위해 이미지와 텍스트를<br>
+            각각의 유사성과 대비성을 통해 학습한 모델을 사용했습니다.</p><br>
+        <p>이미지와 텍스트를 벡터 형태로 표현하기 위해서는,<br>
+            이미지는 픽셀값을 처리하여 벡터 형태로 변환하고, <br>
+            이때 학습된 네트워크를 사용하여 이미지의 특징을 추출합니다.
+        </p>
+        <p>텍스트는 또다른 네트워크를 통해 벡터로 변환합니다. <br>
+            이렇게 변환된 벡터를 사용하여 두 데이터 간의 유사도를 계산합니다.
+        </p>
+        <p>유사도는 벡터의 1-벡터의 내적으로,<br>
+            두 벡터가 같은 방향을 가리키면 100에 가까운 값을 가지며,<br>
+            다른 방향을 가리키면 0에 가까운 값을 가집니다.
+        </p>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

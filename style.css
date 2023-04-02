@@ -1,0 +1,174 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f2f2f2;
+}
+
+.small-word {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: calc(100% - 100px);
+    /* Adjust the value to accommodate the footer height */
+    position: relative;
+    padding: 30px 15px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.footer {
+    font-size: 18px;
+    text-align: center;
+    padding: 20px 0px;
+    background-color: #f7f7f7;
+}
+
+.contact-footer {
+    font-size: 14px;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #e7e7e7;
+    border-top: 1px solid #ccc;
+}
+
+.contact-footer p {
+    margin: 0;
+    padding: 15px;
+}
+
+
+h1 {
+    font-size: 36px;
+    margin: 0;
+    text-align: center;
+    color: #333;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+p {
+    font-size: 19px;
+    margin: 0;
+    padding-top: 20px;
+    color: #333;
+    text-align: center;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+label {
+    margin-right: 10px;
+    color: #333;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+button {
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #3c8c40;
+}
+
+#result {
+    font-size: 24px;
+    margin-top: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.alert {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+}
+
+.alert-danger {
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #ebccd1;
+}
+
+
+
+/* Media queries for mobile devices */
+@media (max-width: 600px) {
+    .contact-footer {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 28px;
+        padding-bottom: 10px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    img {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    label {
+        font-size: 20px;
+        /* Increase the font size for labels on mobile devices */
+        margin-right: 5px;
+    }
+
+    button {
+        font-size: 20px;
+        text-align: center;
+        padding: 5px 10px;
+        margin: 10px;
+    }
+
+    #result {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    /* Adjust footer font size on mobile devices */
+    .container .footer {
+        font-size: 14px;
+    }
+}
