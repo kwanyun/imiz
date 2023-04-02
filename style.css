@@ -1,4 +1,3 @@
-/* Default styles for all devices */
 html,
 body {
     height: 100%;
@@ -7,10 +6,16 @@ body {
     background-color: #f2f2f2;
 }
 
+.small-word {
+    font-size: 18px;
+    font-weight: normal;
+}
+
 .container {
     max-width: 800px;
     margin: 0 auto;
-    min-height: 100%;
+    min-height: calc(100% - 100px);
+    /* Adjust the value to accommodate the footer height */
     position: relative;
     padding: 30px 15px;
     background-color: #ffffff;
@@ -18,14 +23,25 @@ body {
 }
 
 .footer {
-    font-size: 14px;
+    font-size: 18px;
     text-align: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 20px 0;
+    padding: 20px 0px;
     background-color: #f7f7f7;
 }
+
+.contact-footer {
+    font-size: 14px;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #e7e7e7;
+    border-top: 1px solid #ccc;
+}
+
+.contact-footer p {
+    margin: 0;
+    padding: 15px;
+}
+
 
 h1 {
     font-size: 36px;
@@ -37,7 +53,7 @@ h1 {
 }
 
 p {
-    font-size: 18px;
+    font-size: 19px;
     margin: 0;
     padding-top: 20px;
     color: #333;
@@ -49,8 +65,7 @@ img {
     margin: 0 auto;
     max-width: 100%;
     height: auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
+
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -106,39 +121,27 @@ button:hover {
     border: 1px solid #ebccd1;
 }
 
-.contact-footer {
-    font-size: 14px;
-    text-align: center;
-    padding: 20px 0;
-    background-color: #e7e7e7;
-    border-top: 1px solid #ccc;
-}
-
-.contact-footer p {
-    margin: 0;
-    padding: 5px 0;
-}
-
 
 
 /* Media queries for mobile devices */
 @media (max-width: 600px) {
     .contact-footer {
-        font-size: 12px;
+        padding: 15px;
+        font-size: 16px;
     }
 
     .container {
         max-width: 100%;
-        padding: 10px;
+        padding: 12px;
     }
 
     h1 {
-        font-size: 24px;
+        font-size: 28px;
         padding-bottom: 10px;
     }
 
     p {
-        font-size: 16px;
+        font-size: 12px;
     }
 
     img {
@@ -153,9 +156,10 @@ button:hover {
     }
 
     button {
-        font-size: 16px;
+        font-size: 20px;
+        text-align: center;
         padding: 5px 10px;
-        margin-top: 10px;
+        margin: 10px;
     }
 
     #result {
@@ -165,6 +169,6 @@ button:hover {
 
     /* Adjust footer font size on mobile devices */
     .container .footer {
-        font-size: 12px;
+        font-size: 14px;
     }
 }
