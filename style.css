@@ -3,27 +3,36 @@ body {
     height: 100%;
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: #f2f2f2;
+    background-color: #f8f9fa;
 }
 
 .small-word {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: normal;
 }
 
 .container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 25px auto;
     min-height: calc(100% - 100px);
-    /* Adjust the value to accommodate the footer height */
     position: relative;
     padding: 30px 15px;
     background-color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+}
+
+.header,
+.main-content {
+    font-family: 'Dongle', sans-serif;
+    padding: 20px 0;
+    font-size: 26px;
+    /* Adjust this value to your desired size */
 }
 
 .footer {
-    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
     text-align: center;
     padding: 20px 0px;
     background-color: #f7f7f7;
@@ -44,7 +53,7 @@ body {
 
 
 h1 {
-    font-size: 36px;
+    font-size: 72px;
     margin: 0;
     text-align: center;
     color: #333;
@@ -52,22 +61,45 @@ h1 {
     border-bottom: 1px solid #ccc;
 }
 
+h1 a {
+    color: #333;
+    text-decoration: none;
+}
+
+h1 a:hover {
+    color: #a8a8a8;
+}
+
 p {
-    font-size: 19px;
+    font-size: 28px;
     margin: 0;
     padding-top: 20px;
     color: #333;
     text-align: center;
 }
 
-img {
+p1 {
+    font-size: 20px;
+    margin: 0;
+    padding-top: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.quiz-image {
     display: block;
     margin: 0 auto;
     max-width: 100%;
     height: auto;
-
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 label {
@@ -79,8 +111,8 @@ input[type="radio"] {
     margin-right: 10px;
 }
 
-button {
-    font-size: 18px;
+.submit-button {
+    font-size: 20px;
     background-color: #4CAF50;
     color: #fff;
     padding: 10px 20px;
@@ -91,8 +123,8 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #3c8c40;
+.submit-button:hover {
+    background-color: #8CEF70;
 }
 
 #result {
@@ -121,8 +153,6 @@ button:hover {
     border: 1px solid #ebccd1;
 }
 
-
-
 /* Media queries for mobile devices */
 @media (max-width: 600px) {
     .contact-footer {
@@ -135,28 +165,39 @@ button:hover {
         padding: 12px;
     }
 
+    .main-content {
+        font-size: 22px;
+    }
+
     h1 {
-        font-size: 28px;
+        font-size: 36px;
         padding-bottom: 10px;
     }
 
     p {
+        font-size: 24px;
+    }
+
+    p1 {
         font-size: 12px;
     }
 
-    img {
+    .quiz-image {
         padding-top: 10px;
         padding-bottom: 10px;
     }
 
+    .options {
+        flex-direction: column;
+    }
+
     label {
-        font-size: 20px;
-        /* Increase the font size for labels on mobile devices */
+        font-size: 18px;
         margin-right: 5px;
     }
 
-    button {
-        font-size: 20px;
+    .submit-button {
+        font-size: 18px;
         text-align: center;
         padding: 5px 10px;
         margin: 10px;
@@ -169,6 +210,6 @@ button:hover {
 
     /* Adjust footer font size on mobile devices */
     .container .footer {
-        font-size: 14px;
+        font-size: 12px;
     }
 }
