@@ -201,10 +201,24 @@ function getRandomIndexText(max) {
     return index;
 }
 
-function loadNewQuiz() {
+async function loadNewQuiz() {
     randomIndex = getRandomIndexImg(195);
-    randomImage = `outimgs/${randomIndex}.jpg`;
-    quizImage.src = randomImage;
+    randomImage = `outimgs/${randomIndex}.jpg?${new Date().getTime()}`; // added cache-busting query parameter
+    await fetch(randomImage)
+        .then((response) => {
+            if (response.ok) {
+                return response.blob();
+            } else {
+                throw new Error('Image not found');
+            }
+        })
+        .then((blob) => {
+            quizImage.src = URL.createObjectURL(blob);
+            updateTextOptions();
+        })
+        .catch((error) => {
+            console.log('Error loading image:', error);
+        });
     updateTextOptions();
 }
 
@@ -217,14 +231,16 @@ async function updateTextOptions() {
     }
     const anotherRandomOption = lines[anotherRandomOptionIndex];
 
-    const { imageEmbeddings, textEmbeddings } = await fetchEmbeddings();
-    const currentImageIndex = randomIndex;
     imageEmbedding = globalImageEmbeddings[randomIndex].e;
     textEmbedding0 = globalTextEmbeddings[randomOptionIndex].e;
     textEmbedding1 = globalTextEmbeddings[anotherRandomOptionIndex].e;
 
     const answers = findCloserTextIndex(imageEmbedding, textEmbedding0, textEmbedding1);
     const answerNum = answers[0];
+
+    // Define option1 and option2 variables
+    var option1 = options[0];
+    var option2 = options[1];
 
     if (answerNum === 0) {
         option1.value = 'correct';
@@ -238,7 +254,6 @@ async function updateTextOptions() {
         option1.nextElementSibling.textContent = anotherRandomOption;
     }
 }
-
 
 function checkAnswer() {
     var selectedAnswer = document.querySelector('input[name="answer"]:checked');
@@ -262,6 +277,7 @@ function checkAnswer() {
     }
 }
 
-window.onload = function () {
+window.onload = async function () {
+    await fetchEmbeddings(); // Wait for the embeddings to be loaded
     loadNewQuiz();
 }
