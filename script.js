@@ -1,4 +1,4 @@
-var randomIndex = Math.floor(Math.random() * 205); // generates a random number between 0 and 204
+var randomIndex = Math.floor(Math.random() * 195); // generates a random number between 0 and 
 var randomImage = 'outimgs/' + randomIndex + '.jpg'; // constructs the path to the random image
 var quizImage = document.getElementById('quiz-image');
 
@@ -11,16 +11,62 @@ var currentTextEmbedding0;
 var currentTextEmbedding1;
 
 var lines = [
-    "대학원생이 넘어졌다",
-    "퇴근하고 싶다...",
+    "곰",
+    "사과",
+    "빨간색",
+    "바다",
+    "책",
+    "노란 사진",
+    "웃는 남자",
+    "광활한 자연",
+    "찬란한 별빛",
+    "아침 식사",
+    "매력적인 도시야경",
+    "푸른 언덕과 들판",
+    "물결이 일렁이는 조용한 호수",
+    "차가운 눈빛을 뿜는 사람",
+    "희미한 눈부신 빛줄기",
+    "예의 바르고 세련된 사람",
+    "불길한 번개와 천둥",
+    "화려한 불꽃놀이",
+    "소나기와 무더위를 날려버리는 청량한 비바람",
+    "섬세한 감성의 소유자",
+    "무뚝뚝한 행동으로 다가오는 사람",
+    "붉은 노을에 물든 산 정상",
+    "친절하고 배려심 깊은 인간",
+    "찬란한 황금빛 태양이 비추는 들판",
+    "푸른 하늘의 산봉우리",
+    "상쾌한 바람과 파도",
+    "구름에 가려진 일몰",
+    "화창한 해변과 모래사장",
+    "신비로운 달빛과 그림자",
+    "냉철한 사고를 하는 사람",
+    "감성적인 일몰",
+    "붉은 단풍잎이 떨어지는 가을길",
+    "카리브해의 투명한 파란 바다",
+    "살구색 노을이 물든 바다 바깥 해안선",
+    "노란 해가 지는 구름다리",
+    "부드러운 핑크색 꽃잎의 향기",
+    "차가운 눈과 얼음으로 뒤덮인 자연",
+    "유쾌한 웃음이 인상적인 인물",
+    "감성적인 보라색 꽃들의 화원",
+    "신선한 아침 이슬",
+    "쭈펄이올시다. 내 전장 점수 5100점. 나처럼 살지 마시오.",
+    "55도발 왜하냐고",
+    "틱톡 마스터",
+    "4050 아이돌 팬",
+    "최고 코스피야 고맙다",
+    "슬픈 대학원생",
+    "집에 가고 싶다...",
     "집이 최고야",
     "공부하기 싫다",
     "멍청한놈",
-    "응 헛소리",
+    "헛소리 하지마",
     "엥? 이게?",
     "쿵야가 좋아",
     "춘식이가 도망갔다",
-    "재밌는 말이 떠오르질 않는다.",
+    "재밌는 말이 떠오르질 않는 사람.",
+    "어린 나이에 부자가 된 유튜버.",
     "오늘은 하늘에서 쏟아지는 빗속에서 친구들과 고기구이 파티를 즐겼다.",
     "내일은 여자친구와 함께 까치도둑 탐험을 가기로 했다.",
     "나는 가끔 자전거를 타면서 불멸의 존재인 동화속 인물들과 대화를 나눈다.",
@@ -66,16 +112,6 @@ var lines = [
     "개미가 행복한 나무를 찾아서 세계 일주를 떠났다.",
     "미꾸라지가 복권을 사서 1등에 당첨되었다.",
     "소가 눈을 감고 별을 따는 꿈을 꿨다.",
-    "뉴진스가 우주선에서 우주를 관찰하며 미지의 행성을 발견했다.",
-    "아이유가 천사와 함께 달을 돌며 노래를 부르며 춤을 췄다.",
-    "아이브가 빛나는 광채를 뿜으며 세상을 지배했다.",
-    "빅뱅의 멤버들이 열정과 에너지를 가지고 압구정을 지배했다.",
-    "방탄소년단의 멤버들이 무대 위에서 태양과 달을 조종하며 춤을 추었다.",
-    "뉴진스가 우주에서 잃어버린 행성을 찾아 수많은 우주인과 모험을 떠났다.",
-    "아이유가 세계를 돌며 사랑의 노래를 부르며 인류를 구원했다.",
-    "아이브가 시공간을 조종하며 새로운 우주를 창조했다.",
-    "빅뱅의 멤버들이 시간 여행을 하며 세계 역사를 바꿨다.",
-    "방탄소년단의 멤버들이 은하수에서 별을 따며 새로운 음악을 만들었다.",
     "존재하지 않는 세상에서 존재하는 척 하는 것, 그게 바로 디카프리오의 연기다.",
     "애덤 드라이버가 운전하는 차에 타고 싶다면, 덴젤 워싱턴이 몰고 있는 비행기를 타라.",
     "지금도 싸우는 걔네가 이혼하는 이유는 아마도 결혼식에서 블랙핑크의 제니가 춤을 춘 게 아니었을까?",
@@ -86,9 +122,6 @@ var lines = [
     "데드풀을 연기하는 라이언 레이놀즈는 우리에게 화끈한 웃음을 선사한다.",
     "스칼렛 요한슨은 마블 시네마틱 유니버스에서 블랙 위도우를 연기하는 것만큼이나 진정한 영웅이다.",
     "마이클 조던은 농구만큼이나 우리의 인생에도 열정과 성공을 가져다 주는 존재이다.",
-    "쭈펄이올시다. 내 전장 점수 5100점. 나처럼 살지 마시오.",
-    "55도발 왜하냐고",
-    "최고 코스피야 고맙다",
 ];
 
 function cosineSimilarity(embedding1, embedding2) {
@@ -105,6 +138,27 @@ function cosineSimilarity(embedding1, embedding2) {
     }, 0));
 
     return dotProduct / (magnitude1 * magnitude2);
+}
+
+function changeResultColor(color) {
+    const colors = [color];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    document.getElementById('result').style.color = randomColor;
+}
+
+function moveResultElement() {
+    const resultElement = document.getElementById('result');
+    resultElement.style.transition = 'transform 0.5s';
+    resultElement.style.transform = 'translateY(-10px)';
+    setTimeout(() => {
+        resultElement.style.transform = 'translateY(0px)';
+    }, 500);
+}
+
+function updateResultText(text, color) {
+    document.getElementById('result').textContent = text;
+    changeResultColor(color);
+    moveResultElement();
 }
 
 
@@ -128,31 +182,43 @@ async function fetchEmbeddings() {
 }
 
 
-function getRandomIndex(max) {
+function getRandomIndexImg(max) {
     return Math.floor(Math.random() * max);
 }
 
+function getRandomIndexText(max) {
+    let index;
+    if (score < 10) {
+        index = Math.floor(Math.random() * 51); // generates a random number between 0 and 50
+    } else if (score < 20) {
+        index = Math.floor(Math.random() * 91); // generates a random number between 0 and 90
+    } else {
+        index = Math.floor(Math.random() * (max - 40)) + 40; // generates a random number between 40 and max-1
+    }
+    return index;
+}
+
 function loadNewQuiz() {
-    randomIndex = getRandomIndex(205);
+    randomIndex = getRandomIndexImg(195);
     randomImage = `outimgs/${randomIndex}.jpg`;
     quizImage.src = randomImage;
     updateTextOptions();
 }
 
 async function updateTextOptions() {
-    var randomOptionIndex = getRandomIndex(lines.length);
+    var randomOptionIndex = getRandomIndexText(lines.length);
     const randomOption = lines[randomOptionIndex];
-    var anotherRandomOptionIndex = getRandomIndex(lines.length);
+    var anotherRandomOptionIndex = getRandomIndexText(lines.length);
     while (anotherRandomOptionIndex === randomOptionIndex) {
-        anotherRandomOptionIndex = getRandomIndex(lines.length);
+        anotherRandomOptionIndex = getRandomIndexText(lines.length);
     }
     const anotherRandomOption = lines[anotherRandomOptionIndex];
 
     const { imageEmbeddings, textEmbeddings } = await fetchEmbeddings();
     const currentImageIndex = randomIndex;
-    imageEmbedding = imageEmbeddings[currentImageIndex].embedding;
-    textEmbedding0 = textEmbeddings[randomOptionIndex].embedding;
-    textEmbedding1 = textEmbeddings[anotherRandomOptionIndex].embedding;
+    imageEmbedding = imageEmbeddings[currentImageIndex].e;
+    textEmbedding0 = textEmbeddings[randomOptionIndex].e;
+    textEmbedding1 = textEmbeddings[anotherRandomOptionIndex].e;
 
     const answers = findCloserTextIndex(imageEmbedding, textEmbedding0, textEmbedding1);
     const answerNum = answers[0];
@@ -176,7 +242,7 @@ function checkAnswer() {
     if (selectedAnswer) {
         if (selectedAnswer.value === 'correct') {
             score++;
-            document.getElementById('result').textContent = `정답입니다! 현재 연속 정답 : ${score}`;
+            updateResultText(`정답입니다! 현재 연속 정답 : ${score}`, 'green');
             loadNewQuiz();
         } else {
             const answers = findCloserTextIndex(imageEmbedding, textEmbedding0, textEmbedding1);
@@ -184,12 +250,12 @@ function checkAnswer() {
             const distance1 = answers[2];
 
             score = 0;
-            document.getElementById('result').textContent = "틀렸습니다! 현재 연속 정답 : 0";
+            updateResultText("틀렸습니다! 현재 연속 정답 : 0", 'red');
             loadNewQuiz();
-            alert(`틀렸습니다!\n\n 1번 점수: ${((0.75 - distance0) * 134).toFixed(1)}\n 2번 점수: ${((0.75 - distance1) * 134).toFixed(1)}`);
+            alert(`틀렸습니다!\n\n 1번 점수: ${((1 - distance0) * 100).toFixed(1)}\n 2번 점수: ${((1 - distance1) * 100).toFixed(1)}`);
         }
     } else {
-        document.getElementById('result').textContent = "Please select an answer.";
+        document.getElementById('result').textContent = "답을 선택하세요.";
     }
 }
 

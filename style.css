@@ -7,7 +7,7 @@ body {
 }
 
 .small-word {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: normal;
 }
 
@@ -26,13 +26,13 @@ body {
 .main-content {
     font-family: 'Dongle', sans-serif;
     padding: 20px 0;
-    font-size: 26px;
+    font-size: 30px;
     /* Adjust this value to your desired size */
 }
 
 .footer {
     font-family: 'Roboto', sans-serif;
-    font-size: 12px;
+    font-size: 10px;
     text-align: center;
     padding: 20px 0px;
     background-color: #f7f7f7;
@@ -93,7 +93,7 @@ p1 {
     height: auto;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .options {
@@ -128,7 +128,7 @@ input[type="radio"] {
 }
 
 #result {
-    font-size: 24px;
+    font-size: 32px;
     margin-top: 20px;
     text-align: center;
     color: #333;
@@ -165,8 +165,10 @@ input[type="radio"] {
         padding: 12px;
     }
 
+    .header,
     .main-content {
-        font-size: 22px;
+        padding: 10px;
+        /* Adjust this value to your desired size */
     }
 
     h1 {
@@ -183,8 +185,8 @@ input[type="radio"] {
     }
 
     .quiz-image {
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
     }
 
     .options {
