@@ -1,14 +1,18 @@
 var randomIndex = Math.floor(Math.random() * 195); // generates a random number between 0 and 
-var randomImage = 'outimgs/' + randomIndex + '.jpg'; // constructs the path to the random image
+var randomIndexPadded = String(randomIndex).padStart(3, '0'); // pads the randomIndex with zeros to ensure it has 3 digits
+var randomImage = 'outimgs/' + randomIndexPadded + '.jpg'; // constructs the path to the random image
 var quizImage = document.getElementById('quiz-image');
 
-quizImage.src = randomImage;
+//quizImage.src = randomImage;
 
 let globalImageEmbeddings;
 let globalTextEmbeddings;
 
 var score = 0; // initialize score to 0
-var options = document.querySelectorAll('input[type="radio"]');
+//var options = document.querySelectorAll('input[type="radio"]');
+var option0 = document.getElementById('option1');
+var option1 = document.getElementById('option2');
+
 var currentImageEmbedding;
 var currentTextEmbedding0;
 var currentTextEmbedding1;
@@ -166,18 +170,6 @@ function updateResultText(text, color) {
     moveResultElement();
 }
 
-
-function findCloserTextIndex(imageEmbedding, textEmbedding0, textEmbedding1) {
-    const distance0 = cosineSimilarity(imageEmbedding, textEmbedding0);
-    const distance1 = cosineSimilarity(imageEmbedding, textEmbedding1);
-    if (distance0 < distance1) {
-        return [0, distance0, distance1]
-    }
-    else {
-        return [1, distance0, distance1]
-    }
-}
-
 async function fetchEmbeddings() {
     const imageResponse = await fetch('./image_embeddings.json');
     const textResponse = await fetch('./text_embeddings.json');
@@ -189,21 +181,22 @@ function getRandomIndexImg(max) {
     return Math.floor(Math.random() * max);
 }
 
-function getRandomIndexText(max) {
+function getRandomIndexforText(max) {
     let index;
     if (score < 10) {
-        index = Math.floor(Math.random() * 51); // generates a random number between 0 and 50
+        index = Math.floor(Math.random() * 61); // generates a random number between 0 and 50
     } else if (score < 20) {
-        index = Math.floor(Math.random() * 91); // generates a random number between 0 and 90
+        index = Math.floor(Math.random() * 81); // generates a random number between 0 and 90
     } else {
-        index = Math.floor(Math.random() * (max - 40)) + 40; // generates a random number between 40 and max-1
+        index = Math.floor(Math.random() * (max - 10)) + 10; // generates a random number between 40 and max-1
     }
     return index;
 }
 
 async function loadNewQuiz() {
     randomIndex = getRandomIndexImg(195);
-    randomImage = `outimgs/${randomIndex}.jpg?${new Date().getTime()}`; // added cache-busting query parameter
+    randomIndexPadded = String(randomIndex).padStart(3, '0'); // pads the randomIndex with zeros to ensure it has 3 digits
+    randomImage = `outimgs/${randomIndexPadded}.jpg?${new Date().getTime()}`; // added cache-busting query parameter
     await fetch(randomImage)
         .then((response) => {
             if (response.ok) {
@@ -219,39 +212,59 @@ async function loadNewQuiz() {
         .catch((error) => {
             console.log('Error loading image:', error);
         });
-    updateTextOptions();
 }
 
+
 async function updateTextOptions() {
-    var randomOptionIndex = getRandomIndexText(lines.length);
-    const randomOption = lines[randomOptionIndex];
-    var anotherRandomOptionIndex = getRandomIndexText(lines.length);
-    while (anotherRandomOptionIndex === randomOptionIndex) {
-        anotherRandomOptionIndex = getRandomIndexText(lines.length);
+    currentImageEmbedding = globalImageEmbeddings[randomIndex].e;
+
+    var randomOptionIndex = getRandomIndexforText(lines.length);
+    var anotherRandomOptionIndex = getRandomIndexforText(lines.length);
+
+    var randomOption = lines[randomOptionIndex];
+    var anotherRandomOption = lines[anotherRandomOptionIndex];
+
+    currentTextEmbedding0 = globalTextEmbeddings[randomOptionIndex].e;
+    currentTextEmbedding1 = globalTextEmbeddings[anotherRandomOptionIndex].e;
+
+    var similarity0 = cosineSimilarity(currentImageEmbedding, currentTextEmbedding0);
+    var similarity1 = cosineSimilarity(currentImageEmbedding, currentTextEmbedding1);
+    var scorethreshold = 0;
+    if (score < 10) {
+        scorethreshold = 0.14;
     }
-    const anotherRandomOption = lines[anotherRandomOptionIndex];
-
-    imageEmbedding = globalImageEmbeddings[randomIndex].e;
-    textEmbedding0 = globalTextEmbeddings[randomOptionIndex].e;
-    textEmbedding1 = globalTextEmbeddings[anotherRandomOptionIndex].e;
-
-    const answers = findCloserTextIndex(imageEmbedding, textEmbedding0, textEmbedding1);
-    const answerNum = answers[0];
-
+    else if (score < 20) {
+        scorethreshold = 0.08;
+    }
+    console.debug(scorethreshold);
+    var counting = 0;
+    while (Math.abs(similarity0 - similarity1) < scorethreshold) {
+        counting++;
+        console.log(similarity0, similarity1);
+        anotherRandomOptionIndex = getRandomIndexforText(lines.length);
+        anotherRandomOption = lines[anotherRandomOptionIndex];
+        currentTextEmbedding1 = globalTextEmbeddings[anotherRandomOptionIndex].e;
+        similarity1 = cosineSimilarity(currentImageEmbedding, currentTextEmbedding1);
+        if (counting > 10) {
+            randomOptionIndex = getRandomIndexforText(lines.length);
+            randomOption = lines[randomOptionIndex];
+            currentTextEmbedding0 = globalTextEmbeddings[randomOptionIndex].e;
+            similarity0 = cosineSimilarity(currentImageEmbedding, currentTextEmbedding0);
+        }
+    }
+    if (randomOptionIndex == 51) { similarity0 - 0.05; }
+    else if (anotherRandomOptionIndex == 51) { similarity0 - 0.05; }
     // Define option1 and option2 variables
-    var option1 = options[0];
-    var option2 = options[1];
-
-    if (answerNum === 0) {
-        option1.value = 'correct';
-        option1.nextElementSibling.textContent = randomOption;
-        option2.value = 'incorrect';
-        option2.nextElementSibling.textContent = anotherRandomOption;
-    } else {
-        option2.value = 'correct';
-        option2.nextElementSibling.textContent = randomOption;
+    if (similarity0 > similarity1) {
+        option0.value = 'correct';
+        option0.labels[0].textContent = randomOption;
         option1.value = 'incorrect';
-        option1.nextElementSibling.textContent = anotherRandomOption;
+        option1.labels[0].textContent = anotherRandomOption;
+    } else {
+        option0.value = 'incorrect';
+        option0.labels[0].textContent = randomOption;
+        option1.value = 'correct';
+        option1.labels[0].textContent = anotherRandomOption;
     }
 }
 
@@ -263,14 +276,13 @@ function checkAnswer() {
             updateResultText(`정답입니다! 현재 연속 정답 : ${score}`, 'green');
             loadNewQuiz();
         } else {
-            const answers = findCloserTextIndex(imageEmbedding, textEmbedding0, textEmbedding1);
-            const distance0 = answers[1];
-            const distance1 = answers[2];
+            var similarity0 = cosineSimilarity(currentImageEmbedding, currentTextEmbedding0);
+            var similarity1 = cosineSimilarity(currentImageEmbedding, currentTextEmbedding1);
 
             score = 0;
             updateResultText("틀렸습니다! 현재 연속 정답 : 0", 'red');
             loadNewQuiz();
-            alert(`틀렸습니다!\n\n 1번 점수: ${((1 - distance0) * 60).toFixed(1)}\n 2번 점수: ${((1 - distance1) * 60).toFixed(1)}`);
+            alert(`틀렸습니다!\n\n 1번 점수: ${((similarity0) * 50 + 50).toFixed(1)}\n 2번 점수: ${((similarity1) * 50 + 50).toFixed(1)}`);
         }
     } else {
         document.getElementById('result').textContent = "답을 선택하세요.";

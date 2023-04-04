@@ -18,7 +18,7 @@
 <body>
     <header class="header">
         <div class="container">
-            <h1><a href="javascript:location.reload()">이미즈</a><span class="small-word"> - 인공지능의 생각을 읽어보자</span></h1>
+            <h1><a href="javascript:location.reload()">이미즈</a><span class="small-word"> - 인공지능처럼 문제를 풀어보자</span></h1>
         </div>
     </header>
     <main class="main-content">
@@ -50,23 +50,22 @@
             <div class="about">
                 <p1><strong>이미즈는</strong><br><br>
                     이미지와 텍스트를 같이 학습한 인공지능이<br>
-                    이미지를 어떤 말과 비슷하게 생각하는지 <br>
+                    이미지를 어떤 텍스트와 같이 있을지<br>
                     유추해 푸는 퀴즈입니다.</strong><br>
                     <br>
                     연속 정답이 높아질수록 난이도는 증가합니다.<br><br>
                     이러한 문제를 위해 이미지와 텍스트의<br>
                     유사성과 대비성을 학습한 모델을 사용했습니다.
                     <br><br>
-                    이미지와 텍스트를 벡터 형태로 표현하기 위해,<br>
                     이미지는 픽셀값을 벡터 형태로 변환하고, <br>
                     학습된 이미지의 특징을 추출합니다.<br>
                 </p1>
                 <p1>텍스트는 또다른 네트워크를 통해 <br>
-                    벡터로 변환합니다. <br><br>
-                    이렇게 변환된 벡터를 사용하여<br>
+                    벡터로 변환 됩니다. <br><br>
+                    이렇게 변환된 두 벡터를 사용하여<br>
                     두 데이터 간의 유사도를 계산합니다.
                 </p1><br>
-                <p1>유사도는 100-두 벡터의 내적으로,<br>
+                <p1>유사도는 코사인 유사도로,<br>
                     두 벡터가 같은 방향을 가리키면<br>
                     100에 가까운 값을 가지며,<br><br>
                     다른 방향을 가리키면 0에 가까운 값을 가집니다.<br>

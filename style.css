@@ -30,6 +30,20 @@ body {
     /* Adjust this value to your desired size */
 }
 
+.home-button {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 6px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.home-button:hover {
+    background-color: #f1f1f1;
+}
+
 .footer {
     font-family: 'Roboto', sans-serif;
     font-size: 10px;
@@ -50,6 +64,7 @@ body {
     margin: 0;
     padding: 15px;
 }
+
 
 
 h1 {
