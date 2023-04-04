@@ -4,11 +4,16 @@ var quizImage = document.getElementById('quiz-image');
 
 quizImage.src = randomImage;
 
+let globalImageEmbeddings;
+let globalTextEmbeddings;
+
 var score = 0; // initialize score to 0
 var options = document.querySelectorAll('input[type="radio"]');
 var currentImageEmbedding;
 var currentTextEmbedding0;
 var currentTextEmbedding1;
+
+fetchEmbeddings();
 
 var lines = [
     "곰",
@@ -176,11 +181,9 @@ function findCloserTextIndex(imageEmbedding, textEmbedding0, textEmbedding1) {
 async function fetchEmbeddings() {
     const imageResponse = await fetch('./image_embeddings.json');
     const textResponse = await fetch('./text_embeddings.json');
-    const imageEmbeddings = await imageResponse.json();
-    const textEmbeddings = await textResponse.json();
-    return { imageEmbeddings, textEmbeddings };
+    globalImageEmbeddings = await imageResponse.json();
+    globalTextEmbeddings = await textResponse.json();
 }
-
 
 function getRandomIndexImg(max) {
     return Math.floor(Math.random() * max);
@@ -216,9 +219,9 @@ async function updateTextOptions() {
 
     const { imageEmbeddings, textEmbeddings } = await fetchEmbeddings();
     const currentImageIndex = randomIndex;
-    imageEmbedding = imageEmbeddings[currentImageIndex].e;
-    textEmbedding0 = textEmbeddings[randomOptionIndex].e;
-    textEmbedding1 = textEmbeddings[anotherRandomOptionIndex].e;
+    imageEmbedding = globalImageEmbeddings[randomIndex].e;
+    textEmbedding0 = globalTextEmbeddings[randomOptionIndex].e;
+    textEmbedding1 = globalTextEmbeddings[anotherRandomOptionIndex].e;
 
     const answers = findCloserTextIndex(imageEmbedding, textEmbedding0, textEmbedding1);
     const answerNum = answers[0];
@@ -252,7 +255,7 @@ function checkAnswer() {
             score = 0;
             updateResultText("틀렸습니다! 현재 연속 정답 : 0", 'red');
             loadNewQuiz();
-            alert(`틀렸습니다!\n\n 1번 점수: ${((1 - distance0) * 100).toFixed(1)}\n 2번 점수: ${((1 - distance1) * 100).toFixed(1)}`);
+            alert(`틀렸습니다!\n\n 1번 점수: ${((1 - distance0) * 60).toFixed(1)}\n 2번 점수: ${((1 - distance1) * 60).toFixed(1)}`);
         }
     } else {
         document.getElementById('result').textContent = "답을 선택하세요.";
