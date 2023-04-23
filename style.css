@@ -168,6 +168,11 @@ input[type="radio"] {
     border: 1px solid #ebccd1;
 }
 
+.cpng {
+    font-size: 12px;
+    color: #777;
+}
+
 /* Media queries for mobile devices */
 @media (max-width: 600px) {
     .contact-footer {
@@ -228,5 +233,10 @@ input[type="radio"] {
     /* Adjust footer font size on mobile devices */
     .container .footer {
         font-size: 12px;
+    }
+
+    .cpng {
+        font-size: 12px;
+        color: #777;
     }
 }
