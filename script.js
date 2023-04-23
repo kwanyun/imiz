@@ -208,7 +208,7 @@ async function updateTextOptions() {
     var similarity1 = cosineSimilarity(currentImageEmbedding, currentTextEmbedding1);
     var scorethreshold = 0;
     if (score < 10) {
-        scorethreshold = 0.12;
+        scorethreshold = 0.15;
     }
     else if (score < 20) {
         scorethreshold = 0.08;
