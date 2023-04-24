@@ -39,16 +39,29 @@
                     <label for="option2">Text Option 2</label>
                 </div>
             </div>
-
-            <script src="https://ads-partners.coupang.com/g.js"></script>
-            <script>
-                new PartnersCoupang.G({ "id": 657580, "trackingCode": "AF4526693", "subId": null, "template": "carousel", "width": "680", "height": "140" });
-            </script>
             <button class="submit-button" onclick="checkAnswer()">정답 입력</button>
         </div>
+
     </main>
     <footer class="footer">
         <div class="container">
+            <div class="coupang-container">
+                <script>
+                    new PartnersCoupang.G({ "id": 657580, "trackingCode": "AF4526693", "subId": null, "template": "carousel", "width": "680", "height": "140" });
+                </script>
+            </div>
+            <script>
+                function handleResize() {
+                    var container = document.querySelector('.coupang-container');
+                    var width = container.clientWidth - 40;
+                    var height = (width * 140) / 680;
+
+                    var partnersCoupang = new PartnersCoupang.G({ "id": 657580, "trackingCode": "AF4526693", "subId": null, "template": "carousel", "width": width, "height": height });
+                }
+
+                window.addEventListener('resize', handleResize);
+            </script>
+
             <div class="contact-footer">
                 <p1>연락처: addkllwoe11@gmail.com</p1>
             </div><br>
